@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .myc {
+            margin-top: 140px;
+            margin-left: -180px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed-top bg-dark text-white" style="height: 140px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center"><img src="/static/image/logo.png" alt="">Filter Data</div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th><a href="/ed_view_file/{{id}}" class="btn btn-primary">Back To File</a>
+
+
+                            </th>
+                            <th class="text-white">Records</th>
+                            
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="font-size: 18px;font-weight: 500;color:rgb(218, 210, 210);">{{data | length}}
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="myc">
+        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-bs-whatever="@getbootstrap" style="margin-left:200px;margin-top: 3px;">Bulk Edit Column</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post" action="/ed_data_srh/{{id}}">
+                            {%csrf_token%}
+                            <div class="mb-3">
+
+                                <label for="inputState" class="form-label">Bulk Edit Column
+                                </label>
+                                <input type="text" class="form-control" id="recipient-name" name="Words"
+                                    style="margin-bottom: 2px;">
+                                <select id="inputState" class="form-select" name="col">
+                                    <option selected>Choose...</option>
+                                    <option value="KRIMA_true_false">KRIMA_true_false</option>
+                                    <option value="KRIMA_status">KRIMA_status</option>
+                                    <option value="Ok">OK</option>
+                                    
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-primary">Save Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
+                <div class="table-responsive-lg">
+                    <table class="table table-hover text-center caption-top">
+                        <tr>
+                            <th class="text-primary">Edit Data</th>
+                            <th class="text-danger">Collated Sr No</th>
+                            <th class="text-danger">Sprint 4</th>
+                            <th class="text-danger">Sr NO</th>
+                            <th class="text-danger">Article</th>
+                            <th class="text-danger">Date</th>
+                            <th class="text-danger">Regulatory</th>
+                            <th class="text-danger">Title</th>
+                            <th class="text-danger">URL</th>
+                            <th class="text-danger">KRIMA STATUS</th>
+                            <th class="text-danger">KRIMA TRUE/NOT TRUE</th>
+                            <th class="text-danger">KRIMA TYPE</th>
+                            <th class="text-danger">KRIMA DOUBTS/NOTES</th>
+                            <th class="text-danger">Editied GPT Perseon or Business</th>
+                            <th class="text-danger">Editied GPT CompanyCheck</th>
+                            <th class="text-danger">Parent Comapny Name</th>
+                            <th class="text-danger">Civil Penalty Validate</th>
+                            <th class="text-danger">Civil Penalty Cleaned</th>
+                            <th class="text-danger">Currency</th>
+                            <th class="text-danger">Civil Penalty USD-JD</th>
+                            <th class="text-danger">Disgorgement/Resitution(USD)</th>
+                            <th class="text-danger">Total Imposed Penalty</th>
+                            <th class="text-danger">Settled value</th>
+                            <th class="text-danger">Non Monetary Penalty</th>
+
+                        </tr>
+                        {% for i in data%}
+                        <tr>
+                            {%if i.Ok == '1'%}
+                            <td style="font-weight: 700;"> <a href="/ed_filter_edit_data/{{id}}/{{forloop.counter0}}"
+                                    class="btn btn-info" style="width: 100px;">Edit Data</a>
+                            </td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.collated_sr_no}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.sprint_4}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.sr_no}}</td>
+                            <td><textarea name="" id="" cols="40"
+                                    style="color: rgb(18, 239, 81);">{{i.Article}}</textarea></td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.Date}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.Regulatory}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.Title}}</textarea></td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.URL}}</textarea></td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_status}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_true_false}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_type}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_notes}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">
+                                {{i.KRIMA_edited_gpt_person_or_business}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_edited_gpt_company_check}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.parent_company_name}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_civil_penalty_validated}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_civil_penalty_cleansed}}</textarea>
+                            </td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_currency}}</td>
+                            <td style="font-weight: 700;color: rgb(18, 239, 81);">{{i.KRIMA_civil_penalty_usd}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_disgorgement_restitution_usd}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_imposed_penalty}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;"> {{i.KRIMA_settled_value}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(18, 239, 81);font-weight: 700;">{{i.KRIMA_non_monetary_penalty}}</textarea>
+                            </td>
+
+
+                            {%elif i.Ok == '0'%}
+                            <td style="font-weight: 700;"> <a href="/ed_filter_edit_data/{{id}}/{{forloop.counter0}}"
+                                    class="btn btn-danger" style="width: 100px;">Edit Data</a>
+                            </td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.collated_sr_no}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.sprint_4}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.sr_no}}</td>
+                            <td><textarea name="" id="" cols="40"
+                                    style="color: rgb(255, 72, 11);">{{i.Article}}</textarea></td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.Date}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.Regulatory}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.Title}}</textarea></td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.URL}}</textarea></td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_status}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_true_false}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_type}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_notes}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">
+                                {{i.KRIMA_edited_gpt_person_or_business}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_edited_gpt_company_check}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.parent_company_name}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_civil_penalty_validated}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_civil_penalty_cleansed}}</textarea>
+                            </td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_currency}}</td>
+                            <td style="font-weight: 700;color: rgb(255, 72, 11);">{{i.KRIMA_civil_penalty_usd}}</td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_disgorgement_restitution_usd}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_imposed_penalty}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;"> {{i.KRIMA_settled_value}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35"
+                                    style="color: rgb(255, 72, 11);font-weight: 700;">{{i.KRIMA_non_monetary_penalty}}</textarea>
+                            </td>
+
+                            
+
+                            {%else%}
+                            <td style="font-weight: 700;"> <a href="/ed_filter_edit_data/{{id}}/{{forloop.counter0}}"
+                                    class="btn btn-outline-info" style="width: 100px;">Edit Data</a>
+                            </td>
+                            <td style="font-weight: 700;">{{i.collated_sr_no}}</td>
+                            <td style="font-weight: 700;">{{i.sprint_4}}</td>
+                            <td style="font-weight: 700;">{{i.sr_no}}</td>
+                            <td><textarea name="" id="" cols="40">{{i.Article}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.Date}}</td>
+                            <td style="font-weight: 700;">{{i.Regulatory}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.Title}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.URL}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.KRIMA_status}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_true_false}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_type}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_notes}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_edited_gpt_person_or_business}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_edited_gpt_company_check}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.parent_company_name}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_civil_penalty_validated}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_civil_penalty_cleansed}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.KRIMA_currency}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_civil_penalty_usd}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_disgorgement_restitution_usd}}</textarea>
+                            </td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_imposed_penalty}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_settled_value}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_non_monetary_penalty}}</textarea></td>
+                            {%endif%}
+
+                        </tr>
+                        {%endfor%}
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+

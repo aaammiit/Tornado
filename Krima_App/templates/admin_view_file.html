@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .myc {
+            margin-top: 140px;
+            margin-left: -180px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed-top bg-dark text-white" style="height: 140px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center"><img src="/static/image/logo.png" alt=""></div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th><a href="/home" class="btn btn-primary">Back To Home</a></th>
+                            <th class="text-white">Count</th>
+                            <th class="text-white">From-Date</th>
+                            <th class="text-white">To-Date</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="font-size: 18px;font-weight: 500;color:rgb(218, 210, 210);">{{data | length}}
+                            </td>
+                            <td style="font-size: 18px;font-weight: 500;color:rgb(218, 210, 210);">{{f}}</td>
+                            <td style="font-size: 18px;font-weight: 500;color:rgb(218, 210, 210);">{{t}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="myc">
+        <div class="container">
+            <div class="row">
+
+                <div class="table-responsive-lg">
+                    <table class="table table-hover text-center caption-top">
+                        <tr >
+                            <th class="text-danger" >Collated Sr No</th>
+                            <th class="text-danger">Sprint 4</th>
+                            <th class="text-danger">Sr NO</th>
+                            <th class="text-danger">Article</th>
+                            <th class="text-danger">Date</th>
+                            <th class="text-danger">Regulatory</th>
+                            <th class="text-danger">Title</th>
+                            <th class="text-danger">URL</th>
+                            <th class="text-danger">KRIMA STATUS</th>
+                            <th class="text-danger">KRIMA TRUE/NOT TRUE</th>
+                            <th class="text-danger">KRIMA TYPE</th>
+                            <th class="text-danger">KRIMA DOUBTS/NOTES</th>
+                            <th class="text-danger">Editied GPT Perseon or Business</th>
+                            <th class="text-danger">Editied GPT CompanyCheck</th>
+                            <th class="text-danger">Parent Comapny Name</th>
+                            <th class="text-danger">Civil Penalty Validate</th>
+                            <th class="text-danger">Civil Penalty Cleaned</th>
+                            <th class="text-danger">Currency</th>
+                            <th class="text-danger">Civil Penalty USD-JD</th>
+                            <th class="text-danger">Disgorgement/Resitution(USD)</th>
+                            <th class="text-danger">Total Imposed Penalty</th>
+                            <th class="text-danger">Settled value</th>
+                            <th class="text-danger">Non Monetary Penalty</th>
+
+                        </tr>
+                        {% for i in data%}
+                        <tr>
+                            <td style="font-weight: 700;">{{i.collated_sr_no}}</td>
+                            <td style="font-weight: 700;">{{i.sprint_4}}</td>
+                            <td style="font-weight: 700;">{{i.sr_no}}</td>
+                            <td><textarea name="" id="" cols="40">{{i.Article}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.Date}}</td>
+                            <td style="font-weight: 700;">{{i.Regulatory}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.Title}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.URL}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.KRIMA_status}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_true_false}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_type}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_notes}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_edited_gpt_person_or_business}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_edited_gpt_company_check}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.parent_company_name}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_civil_penalty_validated}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_civil_penalty_cleansed}}</textarea></td>
+                            <td style="font-weight: 700;">{{i.KRIMA_currency}}</td>
+                            <td style="font-weight: 700;">{{i.KRIMA_civil_penalty_usd}}</td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_disgorgement_restitution_usd}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_imposed_penalty}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_settled_value}}</textarea></td>
+                            <td><textarea name="" id="" cols="35">{{i.KRIMA_non_monetary_penalty}}</textarea></td>
+                            
+                        </tr>
+                        {%endfor%}
+                    
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

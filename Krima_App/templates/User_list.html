@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #ccc;
+        }
+        .a_back{
+            text-decoration: none;
+            color: #c9cc00;
+            font-size: 18px;
+            background-color: rgb(125, 114, 114);
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            float: right;
+            margin-right: 5px;
+        }
+        .a_back:hover{
+            color: #0099cc;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/image/logo.png" alt="" style="width: 300px; height:60px;margin-left: 500px;">
+    <div>
+        <h4><a href="/home" class="a_back">Back To Home</a></h4>
+    </div>
+
+    {% for user_type, users in user_types.items %}
+        <h2 style="color: #033d52; font-size: 20px;text-align:left;font-weight: 700;" >{{ user_type }} User's</h2>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td style="font-weight: 600;color: #797b16;">{{ user.user.first_name }}</td>
+                <td style="font-weight: 600;color: #797b16;">{{ user.user.last_name }}</td>
+                <td style="font-weight: 600;color: #797b16;">{{ user.user.email }}</td>
+                <td style="font-weight: 600;color: #797b16;">{{ user.user.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>
